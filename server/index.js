@@ -22,7 +22,10 @@ const DEFAULT_HABITS = [
 
 const todayKey = () => new Date().toISOString().slice(0, 10);
 
-app.use(cors());
+app.use(cors({
+  origin: process.env.FRONTEND_URL || '*',
+  credentials: true,
+}));
 app.use(express.json({ limit: '1mb' }));
 
 const userDataSchema = new mongoose.Schema(
